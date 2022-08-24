@@ -15,8 +15,11 @@ fetch("https://pokeapi.co/api/v2/pokemon")
     .then(data => {
         console.log(data)
         console.log(data.results)
+        const divRow = document.createElement("div")
+        divRow.classList.add("row")
         data.results.forEach(pokemon => {
-
+            const divCol = document.createElement("div")
+            divCol.classList.add("col-12", "col-lg-4", "pb-4")
             const card = pokemonCardTemplate.content.cloneNode(true).children[0]
             console.log(pokemon)
             const id = card.querySelector("[data-pokemon-id")
@@ -33,7 +36,9 @@ fetch("https://pokeapi.co/api/v2/pokemon")
 
                 })
 
-            pokemonCardContainer.append(card)
+            divCol.append(card)
+            divRow.append(divCol)
+            pokemonCardContainer.append(divRow)
 
 
         })
